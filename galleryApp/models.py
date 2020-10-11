@@ -34,15 +34,35 @@ class Image(models.Model):
 class Location(models.Model):
     location_name = models.CharField(max_length=60)
 
+    def save_location(self):
+        self.save()
+    @classmethod
+    def delete_location(cls,location):
+        cls.objects.filter(location=location).delete()
+    
+    @classmethod
+    def get_all_locations(cls):
+        locations = cls.objects.all()
+        return locations
     
     def __str__(self):
         return self.location_name
     
 
 class Category(models.Model):
-    name = models.CharField(max_length=30)
-
+    category_name = models.CharField(max_length=30)
     
+    @classmethod
+    def get_all_categories(cls):
+        categories = cls.objects.all()
+        return categories
+    
+    def save_category(self):
+        self.save()
+        
+    @classmethod
+    def delete_category(cls,category):
+        cls.objects.filter(category=category).delete()
     
     def __str__(self):
         return self.category_name
