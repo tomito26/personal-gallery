@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for photos in photo_gallery %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{photos.image.url}}" alt="">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
