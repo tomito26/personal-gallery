@@ -17,10 +17,10 @@ def galler(request):
     }
     return render(request,'image-gallery/gallery.html',context)
     
-def search_results(request):
-    if 'image' in request.GET and request.GET["image"]:
-        search_term = request.GET.get('image')
-        searched_images = Image.search_by_category(search_term)
+def search_by_image_category(request):
+    if 'pic' in request.GET and request.GET["pic"]:
+        search_term = request.GET.get('pic')
+        searched_images = Image.search_by_image_category(search_term)
         message = f"{search_term}"
         
         return render(request,'image-gallery/search.html',{"message":message,"images":searched_images})

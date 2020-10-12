@@ -1,4 +1,4 @@
-{% extends 'image-gallery/search.html' %}
+{% extends 'image-gallery/base.html' %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -13,7 +13,7 @@
             {% for image_item in images %}
                 <div class="col-sm-6 col-md-3">
                     <div class="card">
-                        <img src="{{image_item.photo.url}}" alt="">
+                        <img src="{{image_item.photo.url}}" alt="Image" class="img-fluid">
                     </div>
                 </div>
             {% endfor%}

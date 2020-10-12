@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     url('^$',views.galler,name='galler'),
-    url(r'^search/',views.search_results, name='search_results')
+    url(r'^search/',views.search_by_image_category, name='search_category')
     
 ]
 
