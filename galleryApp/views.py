@@ -42,7 +42,7 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request,'image-gallery/search.html',{"message":message})
 
-def image(request,image_id):
+def picture(request,image_id):
     try:
         image = Image.objects.get(id=image_id)
     except DoesNotExist:
