@@ -1,0 +1,16 @@
+{% extends 'image-gallery/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{image.photo.url}}" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-6">
+            <h1>{{image.image_name}}</h1>
+            <p>{{image.}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
