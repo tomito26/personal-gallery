@@ -25,11 +25,14 @@ class Image(models.Model):
     def search_by_image_category(cls,search_term):
         galleryapp = cls.objects.filter(image_name__icontains=search_term)
         return galleryapp
-    # @classmethod
-    # def search_by_location(cls,search_term):
-    #     results = cls.objects.filter(location__location__icontains=search_term)   
-    #     return results
-        
+    @classmethod
+    def search_by_location(cls,search_term):
+        results = cls.objects.filter(location__location__icontains=search_term)   
+        return results
+    @classmethod
+    def filter_by_location(cls, location):
+        image_location = Image.objects.filter(location__name=location).all()
+        return image_location
 class Location(models.Model):
     location_name = models.CharField(max_length=60)
 

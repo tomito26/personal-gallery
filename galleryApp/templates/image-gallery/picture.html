@@ -1,15 +1,17 @@
 {% extends 'image-gallery/base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <img src="{{image.photo.url}}" class="img-fluid" alt="">
+<div class="container pt-5">
+    <div class="row pt-5">
+        <div class="col-md-6 pt-5">
+            <div class="card">
+                <img src="{{image.photo.url}}" class="img-fluid" alt="">
+            </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pt-5">
             <h1>{{image.image_name}}</h1>
             <p>{{image.image_description}}</p>
-            <p>{{image.upload_date|timesince}}</p>
+            <p>{{image.upload_date|date:"l d-F Y"}}</p>
         </div>
     </div>
 </div>
