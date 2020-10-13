@@ -5,13 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% if title %}
-            GallerWeb-{{title}}
-        {% else %}
-            GallerWeb
-        {% endif %}
-    </title>
+    <title>GallerWeb -Get the images and photos  from a mazing creators</title>
     {% block styles %}
         {% bootstrap_css %}
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,700&display=swap" rel="stylesheet">
@@ -25,7 +19,11 @@
     {% block content %}
 
     {% endblock %}
-    {% include 'footer.html' %}
+
+    <!-- {%block footer%}
+        {% include 'footer.html' %}
+    {% endblock %} -->
+
     {% block script %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         {% bootstrap_javascript %}

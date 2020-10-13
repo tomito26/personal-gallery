@@ -10,6 +10,7 @@ def galler(request):
     photo_gallery = Image.objects.all()
     image_location = Location.objects.all()
     image_category = Category.objects.all()
+    # title = "Get all the images under one website"
 
     context = {
         'photo_gallery':photo_gallery,
