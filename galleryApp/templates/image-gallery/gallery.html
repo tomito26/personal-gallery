@@ -2,13 +2,13 @@
 
 {% block content %}
 <div class="container pt-5">
-    <div class="text-center">
+    <div class="text-center pt-5">
         <h2 id="about">About</h2>
         <p>Welcome to gallerWeb,get all the photos and images you need under one website</p>
     </div>
     <div class="row pt-5">
         {% for photos in photo_gallery %}
-        <div class="col-md-3 col-xs-12 pt-5">
+        <div class="col-md-3 col-xs-12  pb-5">
             <div class="card">
                 <a href="{% url 'picture' photos.id%}"><img src="{{photos.photo.url}}" id="img{{photos.photoid}}"
                         alt="Image" class="img-fluid"></a>
