@@ -1,21 +1,24 @@
 {% extends 'image-gallery/base.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
-    <div class="row">
+<div class="container pb-5">
+    <div class="row p-5">
         {% if images %}
             <h2>Found {{images|length}} of searched term {{message}}</h2>
         {% else %}
             <h2>Found 0 images for the search term {{message}}</h2>
         {% endif %}
     </div>
-    <div class="row">
+    <div class="row p-5">
         {% if images %}
             {% for image_item in images %}
-                <div class="col-sm-6 col-md-3 pb-5">
+                <div class="col-sm-6 col-md-4 pt-5">
                     <div class="card">
                         <img src="{{image_item.photo.url}}" alt="Image" class="img-fluid">
                     </div>
+                    <h2>{{image_item.image_name}}</h2>
+                    <p>{{image_item.image_description}}</p>
+                    <p>{{image_item.upload_date}}</p>
                 </div>
             {% endfor%}
         {% endif %}
