@@ -2,6 +2,31 @@ from django.test import TestCase
 from .models import Location, Image, Category
 
 # Create your tests here.
+class ImageTestClass(TestCase):
+    def setUp(self):
+
+        self.location = Location(location='newyork')
+        self.location.save_location()
+
+        self.category = Category(category='art')
+        self.category.save_category()
+
+        self.pic = Image(id=1, image_name='image', image_description='paint work',
+                             location=self.location, category=self.category)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.coolpic, Image))
+
+    def test_save_image(self):
+        self.pic.save_image()
+        pics = Image.objects.all()
+        self.assertTrue(len(pics) > 0)
+
+    def test_delete_image(self):
+        self.pic.delete_image()
+        pics = Image.objects.all()
+        self.assertTrue(len(pics) == 0)
+
 class CategoryTestClass(TestCase):
     def setUp(self):
         '''
