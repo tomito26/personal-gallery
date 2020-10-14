@@ -10,6 +10,11 @@ This  project is a [gallery](https://gallery97.herokuapp.com)website where users
 ## Author
 * Thomas Khaemba 
 
+## Features
+* The website has a searchbar where you can search for images based on their name
+* The inages are clickable which reveal the  details of the webpage
+* The website has a footer with fontawesome icons and afew details
+* 
 
 ## Installations 
 For this project to run one needs python  and pip installations
@@ -84,4 +89,4 @@ If you would like to collaborate you can run the above commands
 For any queries or collaboration  contact tommybwah@gmail.com
 
 ## License and corporation
-licensed under [MIT]()
+licensed under [MIT](license)
