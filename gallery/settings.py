@@ -12,11 +12,41 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from typing import cast
 import django_heroku
 import dj_database_url
 from decouple import config,Csv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
+MODE=config("MODE", default="dev")
+SECRET_KEY= config('SECRET_KEY')
+DEBUG=config('DEBUG', default=False, cast=bool)
 
+#development
+if config('MODE') == "dev":
+    DATABASES = {
+        'default' : {
+            'ENGINE':'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST' : config('DB_HOST'),
+            'PORT':'',
+        }
+    }
+# production
+else:
+    DATABASES = {
+        'default':dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS',cast=Csv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,12 +56,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ndaz(bx!7jud0#(huutrzkjkt@84*j7^!#%$fg9ka%=*24izr&'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -84,14 +112,7 @@ WSGI_APPLICATION = 'gallery.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gallery',
-        'USER': 'moringa',
-        'PASSWORD':'tom',
-    }
-}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -139,7 +160,9 @@ STATICFILES_DIRS = (
 # Simplified static file serving
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL='/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+cloudinary.config(cloud_name=config("CLOUD_NAME"),
+                  api_key=config("API_KEY"),
+                  api_secret=config('API_SECRET')
+                  )
 
 django_heroku.settings(locals())

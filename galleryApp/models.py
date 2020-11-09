@@ -1,8 +1,9 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Image(models.Model):
-    photo  = models.ImageField(upload_to='images/')
+    photo  = CloudinaryField('images')
     image_name = models.CharField(max_length=60)
     image_description = models.TextField()
     upload_date =models.DateTimeField(auto_now_add=True)

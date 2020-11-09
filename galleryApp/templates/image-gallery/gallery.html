@@ -7,13 +7,43 @@
         <p>Welcome to gallerWeb,get all the photos from amazing creators for all categories from electronics,art,people and many others</p>
     </div>
     <div class="row pt-5">
-        {% for photos in photo_gallery %}
-        <div class="col-md-3 col-sm-6 col-xs-12 pb-5">
-            <div class="card">
-                <a href="{% url 'picture' photos.id%}"><img src="{{photos.photo.url}}" id="img{{photos.photoid}}"
-                        alt="Image" class="img-fluid"></a>
+        {% for image in photo_gallery %}
+            <div class="col-md-3 p-2">
+                <div class="card">
+                    <img src="{{image.photo.url}}" data-toggle="modal" data-target="#im{{image.id}}" class="card-img-top"
+                        alt="{{image.image_name}}">
+            
+                    <!-- Modal -->
+                    <div class="modal fade" id="im{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <h5 class="modal-title text-center" id="exampleModal3Label">{{image.image_name}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <div class="modal-header">
+                                    <img src="{{image.photo.url}}" class="card-img-top" alt="{{image.image_name}}">
+                                </div>
+            
+                                <div class="modal-body">
+                                    <p>Image Description: "{{image.image_description}}"</p>
+                                    <p class="text-muted">Category: ***{{image.category}}***</p>
+                                    <p class="text-muted">Location: ***{{image.location}}***</p>
+                                </div>
+            
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-info"><a
+                                            href="https://galleryhub.herokuapp.com{{image.photo.url}}"><i
+                                                class="far fa-copy"></i></a></button>
+                                    <button type="button" class="btn  btn-outline-info btn-rounded btn-md ml-4"
+                                        data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>            
+                        </div>                
+                    </div>                    
+                </div>                        
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>
